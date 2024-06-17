@@ -1,0 +1,54 @@
+.pnteditform {
+    padding: 2.5rem;
+}
+
+.editformheader {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.editformbackbtn {
+    display: flex;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    gap: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.editformbackbtn:hover {
+    font-weight: 700;
+}
+
+.editformeditor {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #c3c3c3;
+    height: 100vh;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.editformcontroller {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #c3c3c3;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+    .editformheader {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .editformeditor {
+        grid-column: span 2 / span 2;
+    }
+
+    .editformheader {
+        grid-column: span 2 / span 2;
+    }
+
+}

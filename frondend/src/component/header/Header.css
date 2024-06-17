@@ -1,0 +1,24 @@
+.header {
+    padding: 5px;
+    border-color: #e3dede;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.headerdisplay {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerbutton.dx-button,
+.headerbutton.dx-button:hover {
+    color: white;
+    background-color: #C738BD;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+}

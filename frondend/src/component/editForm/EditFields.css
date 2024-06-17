@@ -1,0 +1,12 @@
+.edit-field {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 20px 0px 0px 5px;
+}
+
+.fieldiconalignment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 10px; */
+}

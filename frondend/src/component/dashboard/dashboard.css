@@ -1,0 +1,13 @@
+.pntdashboard {
+    position: fixed;
+
+    @media (min-width: 768px) {
+        width: 16rem;
+    }
+}
+
+.dashboardform {
+    @media (min-width: 768px) {
+        margin-left: 16rem;
+    }
+}

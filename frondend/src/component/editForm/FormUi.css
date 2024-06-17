@@ -1,0 +1,35 @@
+.formui {
+    padding: 1.25rem;
+    border: 1px solid #c6c6c6;
+    border-radius: 0.5rem;
+    min-width: 700px;
+    min-height: 100px;
+}
+
+.formuititle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.formuisubheading {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+    color: #c6c6c6;
+    margin-bottom: 1.25rem;
+}
+
+.formfield {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+}
+
+.formfieldtags {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

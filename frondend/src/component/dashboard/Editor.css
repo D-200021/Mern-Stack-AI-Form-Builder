@@ -1,0 +1,16 @@
+.pntdashboardform {
+    padding: 2.5rem;
+    width: 85vw
+}
+
+.dashboardeditortitle {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+}
+
+.dashboardformheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
