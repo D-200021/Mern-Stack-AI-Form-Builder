@@ -5,10 +5,11 @@ import cookieParser from 'cookie-parser';
 import connectToMongoDB from './db/connectToMongoDb.js';
 import authRoutes from './routes/auth.routes.js';
 import getData from './routes/getdata.routes.js';
-
+import path from "path";
 dotenv.config();
 const app = express();
 const Port = process.env.PORT || 3000;
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -22,6 +23,13 @@ app.use("/api/ai", getData);
 app.get("/", (req, res) => {
     res.send("API is running...");
 });
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
 app.listen(Port, () => {
     connectToMongoDB();
     console.log(`app listening on port ${Port}!`);
