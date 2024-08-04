@@ -1,6 +1,6 @@
 .pntdashboardform {
     padding: 2.5rem;
-    width: 85vw
+    width: 88vw;
 }
 
 .dashboardeditortitle {
@@ -12,5 +12,4 @@
 .dashboardformheader {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }

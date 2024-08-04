@@ -20,7 +20,7 @@ const LoginPage = () => {
             });
             const userDetail = await response.json();
             localStorage.setItem("user", JSON.stringify(userDetail));
-            navigate("/Dashboard");
+            navigate("/dashboard");
         } catch (error) {
             console.error('Error:', error);
         }

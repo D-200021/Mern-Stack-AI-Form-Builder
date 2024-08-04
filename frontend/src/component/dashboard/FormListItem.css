@@ -1,0 +1,36 @@
+.formlistitem {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.319);
+    border-color: #e2e8f0;
+    margin: 5px;
+    color: black
+}
+
+.formListItemTitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.formListItemSubHeading {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #babbbbe3;
+}
+
+.lineSpacing {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.formListItemButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.formListItemTitleContainer {
+    display: flex;
+    justify-content: space-between;
+}

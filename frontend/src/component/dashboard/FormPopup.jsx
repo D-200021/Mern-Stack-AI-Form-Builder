@@ -35,7 +35,6 @@ const FormPopup = ({ visible, setVisible, formPromptData, setFormPromptData, get
             showCloseButton={true}
             showTitle={true}
             title="Create a new form"
-            container=".dx-viewport"
             width={400}
             height={270}
         >

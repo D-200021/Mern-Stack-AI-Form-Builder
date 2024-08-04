@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import connectToMongoDB from './db/connectToMongoDB.js';
 import authRoutes from './routes/auth.routes.js';
 import getData from './routes/getdata.routes.js';
+import submitResponse from './routes/submitresponse.routes.js';
 import path from "path";
 dotenv.config();
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", getData);
+app.use("/api/ai/userResponse", submitResponse);
 
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));

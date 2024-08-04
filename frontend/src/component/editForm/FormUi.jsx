@@ -6,13 +6,14 @@ import { RadioGroup } from "devextreme-react/radio-group";
 import { TextArea } from "devextreme-react/text-area";
 import { CheckBox } from "devextreme-react/check-box";
 import { DateBox } from "devextreme-react/date-box";
+import { TagBox } from "devextreme-react/tag-box";
 import {
   Validator,
   RequiredRule,
 } from 'devextreme-react/validator';
 import "./FormUi.css";
 import EditFields from './EditFields';
-const FormUi = ({ jsonForm }) => {
+const FormUi = ({ jsonForm, onFieldUpdate, deleteField }) => {
 
   const renderFormField = (field, index) => {
     switch (field.fieldType) {
@@ -20,7 +21,7 @@ const FormUi = ({ jsonForm }) => {
         return (
           <div key={index} className="formfieldtags">
             <TextBox
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
@@ -30,7 +31,11 @@ const FormUi = ({ jsonForm }) => {
                 <RequiredRule message="This field is required" />
               </Validator>
             </TextBox>
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
 
         );
@@ -38,18 +43,22 @@ const FormUi = ({ jsonForm }) => {
         return (
           <div className="formfieldtags">
             <NumberBox
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
-              width={"90%"}
+              width={"95%"}
             >
 
               <Validator>
                 <RequiredRule message="This field is required" />
               </Validator>
             </NumberBox>
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
 
@@ -58,15 +67,19 @@ const FormUi = ({ jsonForm }) => {
           <div className="formfieldtags">
             <SelectBox
               dataSource={field.options}
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
-              displayExpr={"label"}
+              displayExpr={"value"}
               valueExpr={"value"}
               width={"95%"}
             />
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
 
@@ -75,14 +88,20 @@ const FormUi = ({ jsonForm }) => {
           <div className="formfieldtags">
             <RadioGroup
               dataSource={field.options}
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
               layout='vertical'
               width={"95%"}
+              displayExpr={"value"}
+              valueExpr={"value"}
             />
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
 
@@ -90,36 +109,70 @@ const FormUi = ({ jsonForm }) => {
         return (
           <div className="formfieldtags">
             <TextArea
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
               height={100}
               width={"95%"}
             />
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
 
       case 'checkbox':
-        return (
-          <div className="formfieldtags">
-            <CheckBox
-              text={field.label}
-              hint={field.placeholder}
-              iconSize="25"
-              width={"95%"}
-            />
-            <EditFields />
-          </div>
-        );
+        if (field.options) {
+          return (
+            <div className="formfieldtags">
+              <TagBox
+                items={field.options}
+                searchEnabled={true}
+                showSelectionControls={true}
+                maxDisplayedTags={5}
+                label={field.label || field.fieldLabel}
+                labelMode="outside"
+                showClearButton={true}
+                placeholder={field.placeholder}
+                layout='vertical'
+                width={"95%"}
+                displayExpr={"value"}
+                valueExpr={"value"}
+              />
+              <EditFields
+                defaultValue={field}
+                onUpdate={(value) => onFieldUpdate(value, index)}
+                deleteField={() => deleteField(index)}
+              />
+            </div>
+          )
+        } else {
+          return (
+            <div className="formfieldtags">
+              <CheckBox
+                text={field.label || field.fieldLabel}
+                hint={field.placeholder}
+                iconSize="25"
+                width={"95%"}
+              />
+              <EditFields
+                defaultValue={field}
+                onUpdate={(value) => onFieldUpdate(value, index)}
+                deleteField={() => deleteField(index)}
+              />
+            </div>
+          );
+        }
 
       case 'date':
         return (
           <div className="formfieldtags">
             <DateBox
               defaultValue={new Date()}
-              label={field.label}
+              label={field.label || field.fieldLabel}
               labelMode="outside"
               showClearButton={true}
               placeholder={field.placeholder}
@@ -132,15 +185,28 @@ const FormUi = ({ jsonForm }) => {
                 <RequiredRule message="This field is required" />
               </Validator>
             </DateBox>
-            <EditFields />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
 
       default:
         return (
           <div className="formfieldtags">
-            <TextBox label={field.label} width={"95%"} />
-            <EditFields />
+            <TextBox
+              label={field.label || field.fieldLabel}
+              labelMode="outside"
+              showClearButton={true}
+              width={"95%"}
+              placeholder={field.placeholder} />
+            <EditFields
+              defaultValue={field}
+              onUpdate={(value) => onFieldUpdate(value, index)}
+              deleteField={() => deleteField(index)}
+            />
           </div>
         );
     }
@@ -149,7 +215,7 @@ const FormUi = ({ jsonForm }) => {
   return (
     <div className="formui">
       <h2 className='formuititle'>{jsonForm.formTitle}</h2>
-      <h5 className='formuisubheading'>{jsonForm.formSubHeading}</h5>
+      <h5 className='formuisubheading'>{jsonForm.formSubHeading || jsonForm.formSubheading}</h5>
       <form >
         {jsonForm.formFields?.map((field, index) => (
           <div key={index} className='formfield'>

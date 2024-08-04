@@ -11,3 +11,10 @@
         margin-left: 16rem;
     }
 }
+
+.mainDashboardLayout{
+    display: 'flex'; 
+    flex-direction: 'row';
+    max-width: "100%";
+    overflow-x: hidden
+}

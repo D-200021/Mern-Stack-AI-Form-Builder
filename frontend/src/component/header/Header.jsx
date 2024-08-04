@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../../assets/logo.svg';
 import "./Header.css";
 import { Button } from "devextreme-react/button"
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
     const navigate = useNavigate();
+    const pathName = useLocation().pathname;
 
     const openPage = (route) => {
         try {
@@ -18,7 +19,12 @@ const Header = () => {
     const user = localStorage.getItem("user");
 
     const { email } = user ? JSON.parse(user) : {};
-    return (
+
+    useEffect(() => {
+        console.log(pathName);
+    }, [pathName]);
+
+    return !pathName.includes("AiForm") && (
         <div className='header'>
             <div className='headerdisplay'>
                 <img src={logo} alt="AI FORM BUILDER" width={180} height={50} />
